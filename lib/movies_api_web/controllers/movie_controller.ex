@@ -102,10 +102,6 @@ defmodule MoviesApiWeb.MovieController do
         "director" => director,
         "country" => country
       }) do
-    IO.inspect(
-      "page_size: #{page_size}, page_index: #{page_index}, director: #{director}, country: #{country}"
-    )
-
     movies =
       Movies.get_movies_with_pagination(page_index, page_size, director, country)
       |> Enum.map(fn movie ->

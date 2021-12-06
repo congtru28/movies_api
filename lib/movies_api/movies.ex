@@ -114,11 +114,9 @@ defmodule MoviesApi.Movies do
       director = "%#{director}%"
       country = "%#{country}%"
 
-      query =
-        from m in Movie,
-          where: like(m.country, ^country) and like(m.director_name, ^director)
-
-      query
+      from(m in Movie,
+        where: like(m.country, ^country) and like(m.director_name, ^director)
+      )
       |> paginate(page_index, page_size)
       |> Repo.all()
     else
